@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script does some cool stuff
+# with nested loops
+
+hrs=0
+
+while [ $hrs -le 12 ]
+do
+	echo "Hour: $hrs"
+	mins=1
+	while [ $mins -lt 60 ]
+	do
+		echo "$mins"
+		((mins++))
+	done
+	((hrs++))
+
+done
