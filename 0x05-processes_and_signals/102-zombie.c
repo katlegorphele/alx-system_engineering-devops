@@ -3,7 +3,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-/** infinite_while - function that contains infinite loop
+/**
+  * infinite_while - function that contains infinite loop
   *
   * Return: 9
   */
@@ -17,7 +18,8 @@ int infinite_while(void)
 	return (0);
 }
 
-/** main - Entry point
+/**
+  * main - Entry point
   *
   * Return: 0
   */
@@ -31,9 +33,9 @@ int main(void)
 		if (fork() == 0)
 		{
 			dprintf(1, "Zombie process created, PID: %d\n", getpid());
-			return (0)
+			return (0);
 		}
 	}
 	infinite_while();
-	return(0)
+	return (0);
 }
