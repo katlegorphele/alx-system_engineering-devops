@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Script that kills highlander
 
-pgrep -f 7-highlander ! xargs kill -9
+pgrep -f 7-highlander | xargs kill -9
