@@ -1,0 +1,25 @@
+            Load Balancer (HAproxy)
+              |        |        |
+       ---------  ---------  ---------
+      | Server 1 || Server 2 || Server 3 |
+       ---------  ---------  ---------
+            |         |         |
+        +-----------+-----------+
+        |      Application Server    |
+        +-----------+-----------+
+                    |
+                 Database
+
+    Two additional servers are added to provide redundancy and improve availability of the web infrastructure.
+    A load-balancer is added to distribute incoming traffic among the servers to prevent any one server from being overloaded.
+    HAproxy is used as the load balancer, configured with a round-robin algorithm to evenly distribute traffic among the servers.
+    The load-balancer is set up with an Active-Passive setup, meaning that one server is actively serving traffic while the other 
+    server is standing by as a backup in case of a failure.
+    A primary-replica database cluster is set up with MySQL to improve data availability and prevent data loss.
+    The primary node is the main database that handles all read and write requests, while the replica node acts as a backup for 
+    the primary node in case of a failure.
+    The web server (Nginx) and application server work together to serve dynamic web pages to users.
+    The main issue with this infrastructure is the single point of failure (SPOF) that exists with the load-balancer. 
+    If the load-balancer fails, incoming traffic will not be distributed and the website will be unavailable. 
+    Additionally, security issues can arise without proper firewall and HTTPS configurations, 
+    and monitoring is necessary to ensure the system is running smoothly.

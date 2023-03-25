@@ -1,0 +1,46 @@
+                    +----------+
+                    | Firewall |
+                    +----------+
+                          |
+                          |
+                          |
+        +---------------+--------------------+
+        |                 |                  |
+  +-----+------+    +-----+------+     +-----+-----+
+  | Web Server |    | App Server |     | DB Server |
+  |  (Nginx)   |    |            |     | (MySQL)   |
+  +------------+    |            |     +-----------+
+                    |            |
+            +-------+------------+--------+
+            |          Firewall           |
+            +-----------------------------+
+                            |
+                            |
+                    +--------+--------+
+                    | Load Balancer   |
+                    |  (HAProxy)      |
+                    +-----------------+
+                            |
+                            |
+                        +---------+
+                        | Firewall|
+                        +---------+
+
+
+ Load Balancer Server: Adding a load balancer will distribute incoming traffic to multiple servers and help prevent overloading any single server. Firewalls are added to restrict access and provide a layer of security against malicious traffic.
+
+    HTTPS: Encrypting traffic with SSL/TLS will protect sensitive data transmitted between the user's browser and the server.
+
+    Monitoring: Monitoring will provide insights into server performance, usage, and other metrics, allowing us to troubleshoot issues and proactively manage our infrastructure.
+
+    Data Collection: Monitoring clients will collect data on server performance and other metrics. The data is then sent to a central server, where it can be analyzed and acted upon.
+
+    Monitoring QPS: To monitor QPS, we can use monitoring tools like Prometheus or Grafana, which will collect data on incoming requests and display it in real-time graphs.
+
+Issues:
+
+    SPOF: The Load Balancer server is a single point of failure. If it goes down, traffic will be blocked until it is restored.
+
+    Security Issues: Without firewalls and HTTPS, the server is vulnerable to attacks and data breaches.
+
+    Server Redundancy: If one Application Server goes down, there is still another server running to handle requests. However, having two identical servers running the same code increases the likelihood of both failing at the same time.

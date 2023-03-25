@@ -1,0 +1,56 @@
+               +--------------+
+               |   User       |
+               |   Browser    |
+               +--------------+
+                       |
+                       | HTTP Request
+                       |
+               +--------------+
+               |   DNS        |
+               |   Resolver   |
+               +--------------+
+                       |
+                       | DNS Query for www.foobar.com
+                       |
+               +--------------+
+               |   DNS        |
+               |   Server     |
+               +--------------+
+                       |
+                       | DNS Response with IP 8.8.8.8
+                       |
+               +--------------+
+               |   Web Server |
+               |   (Nginx)    |
+               +--------------+
+                       |
+                       | HTTP Request for www.foobar.com
+                       |
+               +--------------+
+               |   App Server |
+               +--------------+
+                       |
+                       | Process Request and Query Database
+                       |
+               +--------------+
+               |   Database   |
+               |   (MySQL)    |
+               +--------------+
+
+Explanation of the infrastructure:
+
+    A user enters www.foobar.com in their browser.
+    A DNS resolver receives the request and queries a DNS server for the IP address associated with www.foobar.com.
+    The DNS server responds with the IP address of our server, which is 8.8.8.8 in this case.
+    The user's browser sends an HTTP request to our server at IP 8.8.8.8.
+    The request is received by the web server, which in this case is Nginx.
+    Nginx passes the request to the application server, which runs our code base.
+    The application server processes the request and queries the MySQL database as needed.
+    The database responds with the necessary information, and the application server returns a response to Nginx.
+    Nginx sends the response back to the user's browser.
+
+Issues:
+
+    This infrastructure has a single point of failure (SPOF) because there is only one server. If that server goes down, the website will be unavailable.
+    When maintenance is needed, such as deploying new code or updating the web server, the website will experience downtime.
+    The infrastructure cannot handle large amounts of incoming traffic, which can lead to slow page loads or even crashes.
