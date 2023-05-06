@@ -1,0 +1,31 @@
+#!/bin/env bash
+
+# Define a function to audit a subdomain
+function audit_subdomain {
+  local domain=$1
+  local subdomain=$2
+
+  # If a subdomain is specified, only audit that subdomain
+  # Otherwise, audit the default list of subdomains
+  if [ -n "$subdomain" ]; then
+    subdomains=("$subdomain")
+  else
+    subdomains=("www" "lb-01" "web-01" "web-02")
+  fi
+
+  # Loop through each subdomain and audit it
+  for sub in "${subdomains[@]}"; do
+    # Use dig to look up the IP address for the subdomain
+    result=$(dig +short $sub.$domain | awk '{ print $1 }')
+    if [ -n "$result" ]; then
+      # If an IP address is found, use dig and awk to extract the record type
+      record_type=$(dig $sub.$domain | awk '/^;; ANSWER SECTION:$/ { getline; print $3 }')
+      # Print the results in the desired format
+      echo "The subdomain $sub is a $record_type record and points to $result"
+    fi
+  done
+}
+
+# Call the audit_subdomain function with the arguments passed to the script
+audit_subdomain "$@"
+
