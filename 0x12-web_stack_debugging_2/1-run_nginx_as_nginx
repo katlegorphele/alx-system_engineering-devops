@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # Script that runs Nginx as the nginx user
 
 # Stop Nginx if it is already running
@@ -7,6 +7,7 @@ service nginx stop
 # Modify Nginx configuration
 sed -i 's/user\s*[^;]*/user nginx;/' /etc/nginx/nginx.conf
 sed -i 's/listen\s*[^;]*;/listen 8080;/g' /etc/nginx/conf.d/default.conf
+pkill apache2
 
 # Restart Nginx
 service nginx start
