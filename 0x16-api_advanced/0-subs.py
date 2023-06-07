@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
     Function that queries the Reddit API and returns the number of subscribers
     """
     # Set the URL
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     # Set the headers
     headers = {"User-Agent": "My User Agent 1.0"}
 

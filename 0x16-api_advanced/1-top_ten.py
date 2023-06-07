@@ -10,10 +10,8 @@ import requests
 
 
 def top_ten(subreddit):
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
-    }
+    url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
+    headers = {"User-Agent": "My User Agent 1.0"}
 
     response = requests.get(url, headers=headers, allow_redirects=False)
 
